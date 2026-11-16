@@ -1611,6 +1611,11 @@ void osce_enhance_frame(
     int i;
     int method;
 
+#ifndef ENABLE_OSCE_TRAINING_DATA
+    if (psDec->osce.method == OSCE_METHOD_NONE)
+        return;
+#endif
+
     /* enhancement only implemented for 20 ms frame at 16kHz */
     if (psDec->fs_kHz != 16 || psDec->nb_subfr != 4)
     {

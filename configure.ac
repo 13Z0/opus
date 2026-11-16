@@ -203,9 +203,10 @@ AS_IF([test "$enable_dred" = "yes"],[
 AM_CONDITIONAL([ENABLE_DRED], [test "$enable_dred" = "yes"])
 
 AC_ARG_ENABLE([tinylace],
-    [AS_HELP_STRING([--disable-tinylace], [disable built-in TinyLACE enhancement])],,
+    [AS_HELP_STRING([--disable-tinylace], [disable built-in TinyLACE enhancement unless --enable-osce is given])],,
     [enable_tinylace=yes])
 
+AS_IF([test "$enable_osce" = "yes"], [enable_tinylace=yes])
 AS_IF([test "$enable_fixed_point" = "yes"], [enable_tinylace=no])
 AS_IF([test "$enable_tinylace" = "no"], [
   AC_DEFINE([DISABLE_TINYLACE], [1], [Disable TinyLACE])

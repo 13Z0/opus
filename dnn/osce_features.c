@@ -558,6 +558,7 @@ void osce_cross_fade_10ms(float *x_enhanced, float *x_in, int length)
 }
 
 
+#ifdef ENABLE_OSCE_BWE
 void osce_bwe_cross_fade_10ms(opus_int16 *x_fadein, opus_int16 *x_fadeout, int length)
 {
     int i;
@@ -574,3 +575,4 @@ void osce_bwe_cross_fade_10ms(opus_int16 *x_fadein, opus_int16 *x_fadeout, int l
         x_fadein[3*i + 2] = (int) (w_curr * x_fadein[3*i + 2] + (1.f - w_curr) * x_fadeout[3*i + 2] + 0.5);
     }
 }
+#endif

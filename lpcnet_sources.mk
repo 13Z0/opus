@@ -2,11 +2,11 @@ DNN_SOURCES = \
 dnn/nnet.c \
 dnn/nnet_default.c \
 dnn/parse_lpcnet_weights.c \
-dnn/burg.c \
 dnn/freq.c \
 dnn/lpcnet_tables.c
 
 DEEP_PLC_SOURCES = \
+dnn/burg.c \
 dnn/fargan.c \
 dnn/fargan_data.c \
 dnn/lpcnet_enc.c \

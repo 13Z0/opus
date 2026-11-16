@@ -88,10 +88,12 @@ typedef struct {
     int                 reset;
 } OSCEFeatureState;
 
+#ifdef ENABLE_OSCE_BWE
 typedef struct {
     float signal_history[OSCE_BWE_HALF_WINDOW_SIZE];
     float last_spec[2 * OSCE_BWE_MAX_INSTAFREQ_BIN + 2];
 } OSCEBWEFeatureState;
+#endif
 
 #ifndef DISABLE_BBWENET
 /* BBWENet */
@@ -201,10 +203,12 @@ typedef union {
 #endif
 } OSCEState;
 
+#ifdef ENABLE_OSCE_BWE
 typedef struct {
     #ifndef DISABLE_BBWENET
     BBWENetState bbwenet;
     #endif
 } OSCEBWEState;
+#endif
 
 #endif

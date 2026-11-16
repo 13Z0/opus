@@ -31,6 +31,13 @@
 #include <stddef.h>
 #include "opus_types.h"
 
+#if defined(ENABLE_OSCE) && !defined(DISABLE_TINYLACE) \
+    && defined(DISABLE_LACE) && defined(DISABLE_NOLACE) && defined(DISABLE_BBWENET) \
+    && !defined(ENABLE_DEEP_PLC) && !defined(ENABLE_DRED) \
+    && !defined(ENABLE_OSCE_BWE) && !defined(ENABLE_LOSSGEN)
+#define DISABLE_CONV2D
+#endif
+
 #define ACTIVATION_LINEAR  0
 #define ACTIVATION_SIGMOID 1
 #define ACTIVATION_TANH    2
@@ -120,6 +127,7 @@ int linear_init(LinearLayer *layer, const WeightArray *arrays,
   int nb_inputs,
   int nb_outputs);
 
+#ifndef DISABLE_CONV2D
 int conv2d_init(Conv2dLayer *layer, const WeightArray *arrays,
   const char *bias,
   const char *float_weights,
@@ -127,6 +135,7 @@ int conv2d_init(Conv2dLayer *layer, const WeightArray *arrays,
   int out_channels,
   int ktime,
   int kheight);
+#endif
 
 
 void compute_linear_c(const LinearLayer *linear, float *out, const float *in);
